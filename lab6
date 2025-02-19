@@ -1,0 +1,565 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    //prob1
+    int sum_for = 0;
+    for (int i = 1; i <= 100; i++) {
+        sum_for += i;
+    }
+    cout << "Sum of first 100 natural numbers (for loop): " << sum_for << endl;
+
+    // b. Sum of natural numbers up to a given positive integer n using a while loop
+    int n;
+    cout << "Enter a positive integer: ";
+    cin >> n;
+    while (n <= 0) {
+        cout << "Please enter a positive integer: ";
+        cin >> n;
+    }
+
+    int sum_while = 0, counter = 1;
+    while (counter <= n) {
+        sum_while += counter;
+        counter++;
+    }
+
+    cout << "Sum of first " << n << " natural numbers (while loop): " << sum_while << endl;
+
+    //prob2
+    bool isPrime(int num) {
+        if (num < 2) return false;
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) return false;
+        }
+        return true;}
+    
+        // a. Display first 10 prime numbers using a for loop
+        int count = 0, num = 2;
+        cout << "First 10 prime numbers: ";
+        for (; count < 10; num++) {
+            if (isPrime(num)) {
+                cout << num << " ";
+                count++;
+            }
+        }
+        cout << endl;
+    
+        // b. Display first n prime numbers using a while loop
+        int n;
+        cout << "Enter the number of prime numbers to display: ";
+        cin >> n;
+        while (n <= 0) {
+            cout << "Please enter a positive integer: ";
+            cin >> n;
+        }
+    
+        count = 0;
+        num = 2;
+        cout << "First " << n << " prime numbers: ";
+        while (count < n) {
+            if (isPrime(num)) {
+                cout << num << " ";
+                count++;
+            }
+            num++;
+        }
+        cout << endl;
+
+//prob3
+int n;
+cout << "Enter a positive integer to start the Collatz sequence: ";
+cin >> n;
+
+while (n <= 0) {
+    cout << "Please enter a positive integer: ";
+    cin >> n;
+}
+
+cout << "Collatz sequence: " << n << " ";
+while (n != 1) {
+    if (n % 2 == 0) {
+        n /= 2;
+    } else {
+        n = 3 * n + 1;
+    }
+    cout << n << " ";
+}
+cout << endl;
+
+//prob4
+int n, count = 0;
+cout << "Enter a positive integer to count its digits: ";
+cin >> n;
+
+while (n <= 0) {
+    cout << "Please enter a positive integer: ";
+    cin >> n;
+}
+
+int temp = n;
+while (temp > 0) {
+    temp /= 10;
+    count++;
+}
+
+cout << "Number of digits in " << n << " is: " << count << endl;
+
+//prob5
+int n;
+cout << "Enter a positive integer to extract its digits: ";
+cin >> n;
+
+while (n <= 0) {
+    cout << "Please enter a positive integer: ";
+    cin >> n;
+}
+
+cout << "Digits of " << n << " from right to left: ";
+while (n > 0) {
+    cout << n % 10 << " ";
+    n /= 10;
+}
+cout << endl;
+
+//prob6
+int a, b;
+cout << "Enter two positive integers to find their GCD: ";
+cin >> a >> b;
+
+while (a <= 0 || b <= 0) {
+    cout << "Please enter two positive integers: ";
+    cin >> a >> b;
+}
+
+while (b != 0) {
+    int temp = b;
+    b = a % b;
+    a = temp;
+}
+
+cout << "Greatest Common Divisor (GCD) is: " << a << endl;
+
+//prob7
+int sum = 0, count = 0, num;
+    
+while (sum <= 100) {
+    cout << "Enter a number: ";
+    cin >> num;
+    sum += num;
+    count++;
+}
+
+cout << "Sum exceeded 100! Total sum: " << sum << endl;
+cout << "Total numbers entered: " << count << endl;
+
+//prob8
+int balance = 500, withdrawal;
+    
+    cout << "Your balance: $" << balance << endl;
+    
+    while (balance > 0) {
+        cout << "Enter withdrawal amount (or 0 to cancel): ";
+        cin >> withdrawal;
+        
+        if (withdrawal == 0) {
+            break;
+        }
+        
+        if (withdrawal > balance) {
+            cout << "Insufficient funds!" << endl;
+        } else {
+            balance -= withdrawal;
+            cout << "Remaining balance: $" << balance << endl;
+        }
+    }
+   
+    //prob9
+    char response;
+    do {
+        cout << "Enter 'Y' or 'N': ";
+        cin >> response;
+        
+        response = toupper(response); // Convert to uppercase for consistency
+        
+    } while (response != 'Y' && response != 'N');
+    
+    cout << "You entered: " << response << endl;
+
+    //prob10
+    int choice;
+    double balance = 1000.0, amount;
+    
+    do {
+        cout << "\nATM Menu" << endl;
+        cout << "1. Check Balance" << endl;
+        cout << "2. Deposit Money" << endl;
+        cout << "3. Withdraw Money" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        
+        switch (choice) {
+            case 1:
+                cout << "Your balance is: $" << balance << endl;
+                break;
+            case 2:
+                cout << "Enter deposit amount: ";
+                cin >> amount;
+                if (amount > 0) {
+                    balance += amount;
+                    cout << "Deposit successful! New balance: $" << balance << endl;
+                } else {
+                    cout << "Invalid deposit amount!" << endl;
+                }
+                break;
+            case 3:
+                cout << "Enter withdrawal amount: ";
+                cin >> amount;
+                if (amount > 0 && amount <= balance) {
+                    balance -= amount;
+                    cout << "Withdrawal successful! Remaining balance: $" << balance << endl;
+                } else {
+                    cout << "Invalid or insufficient funds!" << endl;
+                }
+                break;
+            case 4:
+                cout << "Exiting ATM. Thank you!" << endl;
+                break;
+            default:
+                cout << "Invalid choice! Please try again." << endl;
+        }
+    } while (choice != 4);
+
+    //prob11
+    int choice;
+    double num1, num2;
+    
+    do {
+        cout << "\nCalculator Menu" << endl;
+        cout << "1. Addition" << endl;
+        cout << "2. Subtraction" << endl;
+        cout << "3. Multiplication" << endl;
+        cout << "4. Division" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        
+        if (choice >= 1 && choice <= 4) {
+            cout << "Enter two numbers: ";
+            cin >> num1 >> num2;
+        }
+        
+        switch (choice) {
+            case 1:
+                cout << "Result: " << num1 + num2 << endl;
+                break;
+            case 2:
+                cout << "Result: " << num1 - num2 << endl;
+                break;
+            case 3:
+                cout << "Result: " << num1 * num2 << endl;
+                break;
+            case 4:
+                if (num2 != 0) {
+                    cout << "Result: " << num1 / num2 << endl;
+                } else {
+                    cout << "Error: Division by zero!" << endl;
+                }
+                break;
+            case 5:
+                cout << "Exiting Calculator. Thank you!" << endl;
+                break;
+            default:
+                cout << "Invalid choice! Please try again." << endl;
+        }
+    } while (choice != 5);
+    
+
+    //prob12
+    string correctPassword = "admin123";
+    string inputPassword;
+    int attempts = 0;
+    bool authenticated = false;
+    
+    while (attempts < 3) {
+        cout << "Enter password: ";
+        cin >> inputPassword;
+        
+        if (inputPassword == correctPassword) {
+            authenticated = true;
+            break;
+        } else {
+            cout << "Incorrect password. Try again." << endl;
+        }
+        
+        attempts++;
+    }
+    
+    if (authenticated) {
+        cout << "Access granted!" << endl;
+    } else {
+        cout << "Too many failed attempts. Access denied!" << endl;
+    }
+
+    //prob13
+    srand(time(0)); // Seed for random number generation
+    int randomNumber = rand() % 100 + 1; // Generate a random number between 1 and 100
+    int guess;
+    
+    cout << "Guess a number between 1 and 100: ";
+    
+    while (true) {
+        cin >> guess;
+        
+        if (guess == randomNumber) {
+            cout << "Congratulations! You guessed the correct number." << endl;
+            break;
+        } else if (guess < randomNumber) {
+            cout << "Too low! Try again: ";
+        } else {
+            cout << "Too high! Try again: ";
+        }
+    }
+
+    //prob14
+    welcomeMessage();
+    
+    srand(time(0)); // Seed for random number generation
+    int randomNumber = rand() % 100 + 1; // Generate a random number between 1 and 100
+    int guess;
+    
+    cout << "Guess a number between 1 and 100: ";
+    
+    while (true) {
+        cin >> guess;
+        
+        if (guess == randomNumber) {
+            cout << "Congratulations! You guessed the correct number." << endl;
+            break;
+        } else if (guess < randomNumber) {
+            cout << "Too low! Try again: ";
+        } else {
+            cout << "Too high! Try again: ";
+        }
+    }
+    
+    //prob15
+    void welcomeMessage() {
+        cout << "Welcome to the C++ programming world!" << endl;
+    }
+    
+    void greetUser() {
+        string name;
+        cout << "Enter your name: ";
+        cin >> name;
+        cout << "Hello, " << name << "!" << endl;
+    }
+    
+    int main() {
+        welcomeMessage();
+        greetUser();
+        
+        srand(time(0)); // Seed for random number generation
+        int randomNumber = rand() % 100 + 1; // Generate a random number between 1 and 100
+        int guess;
+        
+        cout << "Guess a number between 1 and 100: ";
+        
+        while (true) {
+            cin >> guess;
+            
+            if (guess == randomNumber) {
+                cout << "Congratulations! You guessed the correct number." << endl;
+                break;
+            } else if (guess < randomNumber) {
+                cout << "Too low! Try again: ";
+            } else {
+                cout << "Too high! Try again: ";
+            }
+        }
+}
+//prob16
+void welcomeMessage() {
+    cout << "Welcome to the C++ programming world!" << endl;
+}
+
+void greetUser() {
+    string name;
+    cout << "Enter your name: ";
+    cin >> name;
+    cout << "Hello, " << name << "!" << endl;
+}
+
+int maxNumber(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    welcomeMessage();
+    greetUser();
+    
+    srand(time(0)); // Seed for random number generation
+    int randomNumber = rand() % 100 + 1; // Generate a random number between 1 and 100
+    int guess;
+    
+    cout << "Guess a number between 1 and 100: ";
+    
+    while (true) {
+        cin >> guess;
+        
+        if (guess == randomNumber) {
+            cout << "Congratulations! You guessed the correct number." << endl;
+            break;
+        } else if (guess < randomNumber) {
+            cout << "Too low! Try again: ";
+        } else {
+            cout << "Too high! Try again: ";
+        }
+    }
+    
+    // Example usage of maxNumber function
+    int num1, num2;
+    cout << "Enter two numbers to find the maximum: ";
+    cin >> num1 >> num2;
+    cout << "Maximum: " << maxNumber(num1, num2) << endl;
+}
+
+//prob17
+void welcomeMessage() {
+    cout << "Welcome to the C++ programming world!" << endl;
+}
+
+void greetUser() {
+    string name;
+    cout << "Enter your name: ";
+    cin >> name;
+    cout << "Hello, " << name << "!" << endl;
+}
+
+int maxNumber(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int factorial(int n) {
+    int result = 1;
+    for (int i = 1; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+int main() {
+    welcomeMessage();
+    greetUser();
+    
+    srand(time(0)); // Seed for random number generation
+    int randomNumber = rand() % 100 + 1; // Generate a random number between 1 and 100
+    int guess;
+    
+    cout << "Guess a number between 1 and 100: ";
+    
+    while (true) {
+        cin >> guess;
+        
+        if (guess == randomNumber) {
+            cout << "Congratulations! You guessed the correct number." << endl;
+            break;
+        } else if (guess < randomNumber) {
+            cout << "Too low! Try again: ";
+        } else {
+            cout << "Too high! Try again: ";
+        }
+    }
+    
+    // Example usage of maxNumber function
+    int num1, num2;
+    cout << "Enter two numbers to find the maximum: ";
+    cin >> num1 >> num2;
+    cout << "Maximum: " << maxNumber(num1, num2) << endl;
+    
+    // Example usage of factorial function
+    int num;
+    cout << "Enter a number to calculate its factorial: ";
+    cin >> num;
+    cout << "Factorial: " << factorial(num) << endl;
+}
+
+//prob18
+void welcomeMessage() {
+    cout << "Welcome to the C++ programming world!" << endl;
+}
+
+void greetUser() {
+    string name;
+    cout << "Enter your name: ";
+    cin >> name;
+    cout << "Hello, " << name << "!" << endl;
+}
+
+int maxNumber(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int factorial(int n) {
+    int result = 1;
+    for (int i = 1; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+void printRectangle(int width, int height) {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    welcomeMessage();
+    greetUser();
+    
+    srand(time(0)); // Seed for random number generation
+    int randomNumber = rand() % 100 + 1; // Generate a random number between 1 and 100
+    int guess;
+    
+    cout << "Guess a number between 1 and 100: ";
+    
+    while (true) {
+        cin >> guess;
+        
+        if (guess == randomNumber) {
+            cout << "Congratulations! You guessed the correct number." << endl;
+            break;
+        } else if (guess < randomNumber) {
+            cout << "Too low! Try again: ";
+        } else {
+            cout << "Too high! Try again: ";
+        }
+    }
+    
+    // Example usage of maxNumber function
+    int num1, num2;
+    cout << "Enter two numbers to find the maximum: ";
+    cin >> num1 >> num2;
+    cout << "Maximum: " << maxNumber(num1, num2) << endl;
+    
+    // Example usage of factorial function
+    int num;
+    cout << "Enter a number to calculate its factorial: ";
+    cin >> num;
+    cout << "Factorial: " << factorial(num) << endl;
+    
+    // Example usage of printRectangle function
+    int width, height;
+    cout << "Enter width and height to print a rectangle: ";
+    cin >> width >> height;
+    printRectangle(width, height);
+    
+    return 0;
+}
+}
+
